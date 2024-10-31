@@ -68,5 +68,5 @@ jobs:
             # pkill -f app_name || true
             cd /root/app/
             chmod +x ./app_name
-            nohup ./app_name > app.log 2>&1 &
+            tmux new-session -d -s myapp './app_name'
             echo "Aplikasi berhasil dijalankan di background."
