@@ -47,9 +47,10 @@ jobs:
       
       - name: Deploy to VPS
         run: |
-          scp -o StrictHostKeyChecking=no ./app_name ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/app/
+          scp -o StrictHostKeyChecking=no ./app_name ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/root/app/app_name
         env:
           SSH_AUTH_SOCK: ${{ secrets.SSH_KEY }}
+          
       - name: Run applications golang
         run: |
           scp -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
