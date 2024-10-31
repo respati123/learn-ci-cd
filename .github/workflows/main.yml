@@ -49,7 +49,7 @@ jobs:
         run: |
           scp -o StrictHostKeyChecking=no -r ./app_name ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/root/app/app_name
         env:
-          SSH_AUTH_SOCK: ${{ secrets.SSH_KEY }}
+          SSH_AUTH_SOCK: ${{ secrets.SSH_AUTH_SOCK }}
 
 
       - name: Run applications golang
