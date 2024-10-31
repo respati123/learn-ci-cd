@@ -46,10 +46,14 @@ jobs:
       
       
       - name: Deploy to VPS
-        run: |
-          scp -o StrictHostKeyChecking=no -r ./app_name ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/root/app/app_name
-        env:
-          SSH_AUTH_SOCK: ${{ secrets.SSH_AUTH_SOCK }}
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: 22
+          key: ${{ secrets.SSH_KEY }}
+          username: ${{ secrets.SSH_USER }}
+          source: app_name
+          target: /root/app/
 
 
       - name: Run applications golang
