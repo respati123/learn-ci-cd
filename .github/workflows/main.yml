@@ -64,6 +64,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           username: ${{ secrets.SSH_USER }}
           script: |
+
+            pkill -f app_name || true
             cd /root/app/
             chmod +x ./app_name
             nohup ./app_name > app.log 2>&1 &
