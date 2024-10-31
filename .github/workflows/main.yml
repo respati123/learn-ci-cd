@@ -57,16 +57,15 @@ jobs:
 
 
       - name: Run applications golang
-        run: |
-          scp -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-          
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: 22
+          key: ${{ secrets.SSH_KEY }}
+          username: ${{ secrets.SSH_USER }}
+          script: |
             pkill -f app_name || true
             cd /app/
             chmod +x app_name
             nohup ./app_name > app.log 2>&1 &
             echo "Aplikasi berhasil dijalankan di background."
-            
-          EOF
-        env:
-          SSH_AUTH_SOCK: ${{ secrets.SSH_KEY}}
-  
