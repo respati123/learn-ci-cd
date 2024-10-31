@@ -64,8 +64,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           username: ${{ secrets.SSH_USER }}
           script: |
-            pkill -f app_name || true
             cd /app/
-            chmod +x app_name
+            chmod +x ./app_name
             nohup ./app_name > app.log 2>&1 &
             echo "Aplikasi berhasil dijalankan di background."
